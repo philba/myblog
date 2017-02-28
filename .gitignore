@@ -1,0 +1,3 @@
+__pycache__
+myblog_env/
+*.sqlite3

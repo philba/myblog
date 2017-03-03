@@ -6,7 +6,7 @@ from .base import *
 DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8f3q#avvk6^x+x3_*l^%t)biah^pw-ukh7*!4s@r-w0pkxr!j^'
+SECRET_KEY = 'k5@y8tvh9!ojzdj7z)hs0zq4muts1z'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

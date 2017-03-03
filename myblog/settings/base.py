@@ -21,6 +21,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 SECRET_KEY = 'k5@y8tvh9!ojzdj7z)hs0zq4muts1z'
 ALLOWED_HOSTS = [
     'philba.pythonanywhere.com',
+    '127.0.0.1',
 ]
 
 # Quick-start development settings - unsuitable for production
@@ -100,6 +101,7 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # ------------------------
 # MySql
 # -------------------------
+# This setup is configured to work with my PythonAnywhere account
 
 '''
 DATABASES = {
@@ -118,7 +120,7 @@ DATABASES = {
 # -------------------------
 # PostgreSQL
 # -------------------------
-
+# This setup if for my local notebook based development
 
 DATABASES = {
     'default': {

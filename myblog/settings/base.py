@@ -18,6 +18,10 @@ import os
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+SECRET_KEY = 'k5@y8tvh9!ojzdj7z)hs0zq4muts1z'
+ALLOWED_HOSTS = [
+                'philba.pythonanywhere.com',
+]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -94,13 +98,23 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'philba$myblog',
+        'USER': 'philba',
+        'PASSWORD': 'nov-66-hotel-kilo',
+        'HOST': 'philba.mysql.pythonanywhere-services.com',
+        'TEST': {
+            'NAME': 'philba$test_myblog'
+        }
+
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myblog',
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'myblog',
 
     }
 }
+
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {
@@ -135,7 +149,8 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = '/home/phil/myblog/static/'
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

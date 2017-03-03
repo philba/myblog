@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 SECRET_KEY = 'k5@y8tvh9!ojzdj7z)hs0zq4muts1z'
 ALLOWED_HOSTS = [
-                'philba.pythonanywhere.com',
+    'philba.pythonanywhere.com',
 ]
 
 # Quick-start development settings - unsuitable for production
@@ -95,7 +95,13 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+# Uncomment desired database interface configuration
 
+# ------------------------
+# MySql
+# -------------------------
+
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -106,15 +112,36 @@ DATABASES = {
         'TEST': {
             'NAME': 'philba$test_myblog'
         }
-
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'myblog',
-
     }
 }
+'''
+# -------------------------
+# PostgreSQL
+# -------------------------
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myblog',
+    }
+
+}
+
+
+# -------------------------
+# Sqllite3
+# -------------------------
+
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myblog',
+    }
+
+}
+'''
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {

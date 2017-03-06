@@ -1,11 +1,25 @@
 {% extends "base.html" %}
+{% load static wagtailuserbar %}
 {% load wagtailcore_tags %}
+
+{% block extra_css %}
+     <!-- Add extra sytlesheets references here -->
+{% endblock %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
+<div class="w3-container w3-teal">
     <h1>Homepage</h1>
-    
-    <p>{{ page.body|richtext }}</p>
+</div>
+<div class="w3-panel w3-half">
+    <h3 class="w3-center w3-text-shadow">Some of my blog highlights</h3>
+    <div class="w3-container w3-card-8 w3-leftbar w3-border-green w3-round-large w3-padding-medium">
+        <p>{{ page.body|richtext }}</p>
+    </div>
+</div>
+<div class="w3-light-grey"
+    <p><a href='{{ page.get_parent.url }}blog/'>My Blog</a>
+</div>
 
 {% endblock %}

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'home',
     'search',
+    'blog',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -179,7 +180,16 @@ STATICFILES_DIRS = [
 ]
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = '/home/phil/myblog/static/'
+#
+#STATIC_ROOT: PythonAnywhere
+#
+#STATIC_ROOT = '/home/philba/myblog/static/'
+
+#
+# STATIC_ROOT: Local notebook development site
+#
+STATIC_ROOT = '/home/phil/env_myblog/myblog/static/'
+
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
 {% load static wagtailuserbar %}
 
 {% block extra_css %}
@@ -21,13 +22,45 @@
             <h1><b>{{ page.title }}</b></h1>
             <p class="w3-margin-0">{{ page.date }}</p>
         </div>
-        <div class="w3-row">
-            <div class="w3-container w3-margin">
+        <div class="w3-col s12 ">
+            <div class="w3-container">
                 <div class=" w3-container">
                     {{ page.body|richtext }}
                 </div>
             </div>
         </div>
+        {% if page.tags.all.count %}
+            <div class="w3-container w3-margin">
+                <div class="w3-card-4">
+                    <div class="w3-bar w3-white">
+                        <div class="w3-bar-item w3-dark-grey">
+                            Tags
+                        </div>
+                        <div>
+                            {% for tag in page.tags.all %}
+                                <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="w3-bar-item w3-button w3-hover-dark-grey w3-padding-medium w3-border-right">
+                                       {{ tag }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if page.gallery_images.all.count %}
+            <div class="w3-container w3-padding-16">
+                {% for item in page.gallery_images.all %}
+                    <div class="w3-left w3-card-4 w3-white" style="margin: 8px 8px">
+                        <div class="w3-margin">{% image item.image fill-360x240 %}
+                        </div>
+                        <div class="w3-center">
+                            <p>{{ item.caption }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
     <footer class="w3-container w3-dark-grey w3-padding-16 w3-margin-top">
         <p><a href="{{ page.get_parent.url }}">

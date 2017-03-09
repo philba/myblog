@@ -17,13 +17,13 @@
     </style>
 {% endblock %}
 
-{% block body_class %}template-blogindexpage{% endblock %}
+{% block body_class %}template-blogtagindexpage{% endblock %}
 
 {% block content %}
     <div class="pagebody">
         <div class="w3-container w3-center w3-padding-8 w3-dark-grey">
             <h1><b>{{ page.title }}</b></h1>
-            <p>Last Updated: </p>
+            <p>Showing all blogs tagged {{ request.GET.tag }} </p>
         </div>
         <div class="w3-row">
             <div class="w3-col m11 s12 w3-margin w3-padding-left">
@@ -73,6 +73,6 @@
         </div>
     </div>
     <footer class="w3-container w3-dark-grey w3-padding-16 w3-margin-top">
-        <p><a href='{{ page.get_parent.url }}'>Return to Home Page</a></p>
+        <p><a href="{% slugurl 'blog' %}">Return to Blog Home Page</a></p>
     </footer>
 {% endblock %}

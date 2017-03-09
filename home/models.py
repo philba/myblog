@@ -6,6 +6,8 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
+from blog.models import BlogPage
+
 
 class HomePage(Page):
     body = RichTextField(max_length=500, blank=True)
@@ -16,3 +18,13 @@ class HomePage(Page):
 
     def __str__(self):
         return "Homepage"
+
+    def get_context(self, request):
+        # get list of blog pages
+        blogpages = BlogPage.objects.live().order_by(
+            '-first_published_at')
+
+        #update page context with blogpages
+        context = super(HomePage, self).get_context(request)
+        context['blogpages'] = blogpages
+        return context

@@ -1,25 +1,50 @@
 {% extends "base.html" %}
 {% load static wagtailuserbar %}
 {% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
 
 {% block extra_css %}
-     <!-- Add extra sytlesheets references here -->
+<!-- Add extra sytlesheets references here -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        .pagebody {
+            background-image: url("{% static 'images/ivory-paper.jpg' %}");
+        }
+        .pageheader {
+            background-image: url("{% static 'images/dgrey062.gif' %}");
+        }
+    </style>
 {% endblock %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-<div class="w3-container w3-teal">
-    <h1>Homepage</h1>
-</div>
-<div class="w3-panel w3-half">
-    <h3 class="w3-center w3-text-shadow">Some of my blog highlights</h3>
-    <div class="w3-container w3-card-8 w3-leftbar w3-border-green w3-round-large w3-padding-medium">
-        <p>{{ page.body|richtext }}</p>
+<div class="w3-container w3-light-grey">
+    <div class="w3-dark-grey">
+        <div class="w3-center"><h2><b>Welcome to my Home Page</b></h2></div>
+        <div id="navbar" class="w3-bar w3-border-top">
+            <a href="#" class="w3-bar-item w3-hover-white w3-button"><b>About Me</b></a>
+            <a href="{{ pageurl }}blog/" class="w3-bar-item w3-hover-white w3-button"><b>My Blog</b></a>
+        </div>
     </div>
-</div>
-<div class="w3-light-grey"
-    <p><a href='{{ page.get_parent.url }}blog/'>My Blog</a>
+    <div class="w3-container pagebody">
+        <div class="w3-card-4 w3-left w3-white w3-margin w3-third w3-dark-grey">
+            <div class="w3-center">
+                <h3>Latest Blogs</h3>
+            </div>
+            <div>
+            {% if blogpages.count %}
+                {% for blog in blogpages %}
+                    {% with blog=blog.specific %}
+                        <a class="w3-button w3-block w3-white" href="{% pageurl blog %}">
+                        {{ blog.title }}</a>
+                    {% endwith %}
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

@@ -29,11 +29,11 @@
         </div>
     </div>
     <div class="w3-container pagebody">
-        <div class="w3-card-4 w3-left w3-white w3-margin w3-third w3-dark-grey">
+        <div class="w3-card-4 w3-left w3-white w3-margin-top w3-third w3-dark-grey">
             <div class="w3-center">
                 <h3>Latest Blogs</h3>
             </div>
-            <div>
+            <div class="w4-hide-small">
             {% if blogpages.count %}
                 {% for blog in blogpages %}
                     {% with blog=blog.specific %}
@@ -46,5 +46,5 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
+

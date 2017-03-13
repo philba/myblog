@@ -23,8 +23,10 @@ class HomePage(Page):
         # get list of blog pages
         blogpages = BlogPage.objects.live().order_by(
             '-first_published_at')
-
+        # get just the first four to show as most recent
+        blogpages = blogpages[:3]
         #update page context with blogpages
         context = super(HomePage, self).get_context(request)
         context['blogpages'] = blogpages
         return context
+

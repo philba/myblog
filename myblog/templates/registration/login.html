@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load static wagtailuserbar %}
+
+{% block extra_css %}
+     <!-- Add extra sytlesheets references here -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        .pagebody {
+            background-image: url("{% static 'images/ivory-paper.jpg' %}");
+        }
+    </style>
+{% endblock %}
+
+{% block body_class %}template-login{% endblock %}
+
+{% block content %}
+    <!-- Overall page container -->
+    <div class="w3-container pagebody">
+        <!-- Login Dialog Container -->
+        <div class="w3-padding-0" style="width: 400px;min-width:300px;margin: 100px auto;">
+            <!-- User Validation Errors -->
+            {% if form.errors and not form.non_field_errors %}
+                <div class="w3-panel w3-red">
+                    <p>
+                        {% if form.errors.items|length == 1 %}
+                            {% trans "Please correct the error below." %}
+                        {% else %}
+                            {% trans "Please correct the errors below." %}
+                        {% endif %}
+                    </p
+                </div>
+            {% endif %}
+            {% if form.non_field_errors %}
+                <div class="w3-panel w3-red">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <div class="w3-panel w3-red">
+                    <p>
+                        {% blocktrans trimmed %}
+                            You are authenticated as {{ username }}, but are not authorized to
+                            access this page. Would you like to login to a different account?
+                        {% endblocktrans %}
+                    </p>
+                </div>
+            {% endif %}
+            <!-- Actual User Login Form -->
+            <div class=" w3-container w3-dark-grey">
+                <div class="w3-dark-grey w3-center">
+                    <h3>User Login</h3>
+                </div>
+                <div class="w3-container w3-white w3-margin-bottom">
+                    <form action="{{ app_path }}" method="post" id="login-form">
+                        {% csrf_token %}
+                        <div class="w3-row w3-margin-top">
+                            <div class="w3-quarter w3-margin-right w3-padding-small">
+                                <b>{{ form.username.label_tag }}</b>
+                            </div>
+                            <div class="w3-rest">
+                                {{ form.username }}
+                           </div>
+                        </div>
+                        <div class="w3-row w3-margin-top">
+                            <div class="w3-quarter w3-margin-right w3-padding-small">
+                                <b>{{ form.password.label_tag }}</b>
+                            </div>
+                            <div class="w3-rest">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <div class="w3-row">
+                            <input type="hidden" name="next" value="{{ next }}"/>
+                        </div>
+                        <div class="w3-margin">
+                            <button class="w3 button w3-hover-dark-grey w3-block w3-center">
+                                {% trans 'Log in' %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

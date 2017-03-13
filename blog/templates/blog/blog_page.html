@@ -28,6 +28,24 @@
                  <a href="{{ page.get_parent.url }}" class="w3-bar-item w3-hover-white w3-button"><b>Blog Index</b></a>
              </div>
         </div>
+        <div>
+            <div class="w3-cell-row w3-padding">
+                {% with categories=page.categories.all %}
+                    {% if categories %}
+                        <div class="w3-cell w3-left" style="vertical-align: middle; margin: 8px 4px 16px 4px">
+                            <h5><b>Posted In:</b></h5>
+                        </div>
+                        {% for category in categories %}
+                            <a href="{{ page.get_parent.url }}?category={{ category }}" class="w3-cell w3-button w3-card-8 w3-left w3-white w3-padding-small w3-hover-dark-grey" style="vertical-align: middle; margin: 16px 8px 16px 8px">
+                                {% image category.icon fill-32x32 style='vertical-align: middle' %}
+                                {{ category.name }}
+                            </a>
+                        {% endfor %}
+                        <div class="w3-rest"></div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
         <div class="w3-col s12 ">
             <div class="w3-container">
                 <div class=" w3-container">
@@ -44,7 +62,7 @@
                         </div>
                         <div>
                             {% for tag in page.tags.all %}
-                                <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="w3-bar-item w3-button w3-hover-dark-grey w3-padding-medium w3-border-right">
+                                <a href="{{ page.get_parent.url }}?tag={{ tag }}" class="w3-bar-item w3-button w3-hover-dark-grey w3-padding-medium w3-border-right">
                                        {{ tag }}
                                 </a>
                             {% endfor %}

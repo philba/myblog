@@ -24,6 +24,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+'''
+WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login'
+'''
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -73,6 +77,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'myblog.urls'
+WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'registration/login.html'
+
 
 TEMPLATES = [
     {

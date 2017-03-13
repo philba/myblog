@@ -23,13 +23,31 @@
     <div class="pagebody">
         <div class="w3-container w3-center w3-padding-8 w3-dark-grey">
             <h1><b>{{ page.title }}</b></h1>
-            <p>Last Updated: </p>
+            <p>{{ subtitle }}</p>
         </div>
-        <div class="w3-dark-grey">
-            <div id="navbar" class="w3-bar w3-border-top">
-                <a href="{% slugurl 'home' %}" class="w3-bar-item w3-hover-white w3-button"><b>Home</b></a>
-             </div>
-        </div>
+        <div class="w3-bar w3-border-top w3-dark-grey w3-padding-left">
+            <a href="{% slugurl 'home' %}" class="w3-bar-item w3-button">
+                <b>Home</b>
+            </a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-button w3-hover-white">
+                    <b>Categories </b><i class="fa fa-caret-down"></i>
+                </button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-quarter">
+                    <a href="{{ request.path }}" class="w3-bar-item w3-button w3-white w3-border-bottom">
+                        All Categories
+                    </a>
+                    {% for category in categories %}
+                        <a href="{{ request.path }}?category={{ category }}" class="w3-bar-item w3-button w3-white">
+                            {{ category }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% if request.GET.tag|length or request.GET.category|length %}
+                <a href="{{ request.path }}" class="w3-bar-item w3-hover-white w3-button"><b>Blog Index</b></a>
+            {% endif %}
+         </div>
         <div class="w3-row">
             <div class="w3-col m11 s12 w3-margin w3-padding-left">
             <!-- Blog Entries -->
@@ -46,8 +64,8 @@
                             </div>
                             <div class="w3-container">
                                 <h3><b>{{ post.title }}</b></h3>
-                                <h5>Posted:
-                                <span class="w3-opacity">{{ post.specific.date }}</span></h5>
+                                <h5>Revised:
+                                <span class="w3-opacity">{{ post.latest_revision_created_at }}</span></h5>
                             </div>
                             <div class="w3-container">
                                 <p>{{ post.intro }}</p>

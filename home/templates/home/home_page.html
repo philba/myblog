@@ -26,6 +26,11 @@
         <div id="navbar" class="w3-bar w3-border-top">
             <a href="#" class="w3-bar-item w3-hover-white w3-button"><b>About Me</b></a>
             <a href="{{ pageurl }}blog/" class="w3-bar-item w3-hover-white w3-button"><b>My Blog</b></a>
+            {% if user.is_authenticated %}
+                <a href="{{ pageurl }}logout/?next={{ pageurl }}" class="w3-bar-item w3-hover-white w3-button w3-right"><b>Log Out</b></a>
+            {% else %}
+                <a href="{{ pageurl }}login/?next=/" class="w3-bar-item w3-right w3-hover-white w3-button"><b>Log In</b></a>
+            {% endif %}
         </div>
     </div>
     <div class="w3-container pagebody">

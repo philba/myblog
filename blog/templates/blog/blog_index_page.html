@@ -54,21 +54,25 @@
                 {% for post in blogpages %}
                     {% with post=post.specific %}
                         <div class="w3-card-4 w3-margin w3-padding-left w3-white">
+                            <div class="w3-row">
                             <!-- Insert blog Image here -->
-                            <div class="w3-container w3-margin-top w3-center">
-                                {% with post.main_image as main_image %}
-                                    {% if main_image %}
-                                        {% image main_image height-360 class=" w3-margin w3-padding" %}
-                                    {% endif %}
-                                {% endwith %}
+                                <div class="w3-col s12 m6 l4 w3-margin-top w3-left">
+                                    {% with post.main_image as main_image %}
+                                        {% if main_image %}
+                                            {% image main_image max-360x240 style="width:90%" %}
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="w3-col s12 m6 l8w3-left">
+                                    <h3><b>{{ post.title }}</b></h3>
+                                    <h5>Revised:
+                                    <span class="w3-opacity">{{ post.latest_revision_created_at }}</span></h5>
+                                    <div>
+                                        <p>{{ post.intro }}</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="w3-container">
-                                <h3><b>{{ post.title }}</b></h3>
-                                <h5>Revised:
-                                <span class="w3-opacity">{{ post.latest_revision_created_at }}</span></h5>
-                            </div>
-                            <div class="w3-container">
-                                <p>{{ post.intro }}</p>
                                 <div class="w3-row">
                                     <div class="w3-col m8 s12">
                                         <p>

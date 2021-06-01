@@ -18,7 +18,7 @@ pytz==2016.10
 requests==2.13.0
 six==1.10.0
 Unidecode==0.4.20
-urllib3==1.20
+urllib3==1.26.5
 wagtail==1.9
 webencodings==0.5
 Willow==0.4
